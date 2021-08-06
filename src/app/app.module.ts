@@ -8,17 +8,22 @@ import { StudentsFilterComponent } from './components/students/students-filter/s
 import { StudentsFormComponent } from './components/students/students-form/students-form.component';
 import { StudentsFileComponent } from './components/students/students-file/students-file.component';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     StudentsFilterComponent,
     StudentsFormComponent,
-    StudentsFileComponent
+    StudentsFileComponent,
   ],
+
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
