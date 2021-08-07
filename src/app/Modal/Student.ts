@@ -4,4 +4,5 @@ export class Student{
     locality: string;
     year: any;
     active: string;
+    university: string;
 }
