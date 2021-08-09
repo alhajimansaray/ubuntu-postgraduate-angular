@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { StudentsFilterComponent } from './components/students/students-filter/students-filter.component';
 import { StudentsFormComponent } from './components/students/students-form/students-form.component';
 import { StudentsFileComponent } from './components/students/students-file/students-file.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 
 
 
