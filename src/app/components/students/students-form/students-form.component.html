@@ -64,8 +64,8 @@
         </thead>
         <tbody>
         <tr *ngFor="let students of newStudent" >
-            <td class="text-center"><a href="" class="text-info" title="Load"><i class="far fa-file-alt"></i></a></td>
-            <td class="text-center"><a href="" class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
+            <td class="text-center" data-toggle="modal" data-target="#goModal"><a class="text-info" title="Load"><i class="far fa-file-alt"></i></a></td>
+            <td class="text-center" data-toggle="modal" data-target="#goModal"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
             <td class="text-center"><a href="" class="text-danger" title="Delete"><i class="fas fa-times"></i></a></td>
 
 <!--Binding table Data to Students array-->
@@ -100,13 +100,21 @@
           <label for="name">Name:</label> &nbsp; &nbsp;
           <input type="text" name="name" [(ngModel)]="student.name" > <br>
           <label for="name">Birthday:</label> &nbsp;
-          <input type="text" name="birthday" [(ngModel)]="student.birthday"> <br>
+          <input type="text" type="date" name="birthday" [(ngModel)]="student.birthday"> <br>
           <label for="name">Locality:</label> &nbsp;
           <input type="text" name="locality" [(ngModel)]="student.locality"> <br>
           <label for="name">University:</label> &nbsp;
           <input type="text" name="university" [(ngModel)]="student.university"> <br>
           <label for="name">Year:</label> &nbsp; &nbsp; &nbsp;
-          <input type="text" name="year" [(ngModel)]="student.year">
+          <input type="number" data-target="#year" name="year" [(ngModel)]="student.year">
+
+          <label for="active">Active:</label>&nbsp;
+          <input class="input" type="radio" name="Radios" value="option1" checked>
+          <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp; &nbsp;
+          <input class="input" type="radio" name="Radios" value="option1" checked>
+          <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
+
+
         </div>
       </form>
     </div>
@@ -119,6 +127,59 @@
 </div>
 
 <!--End of Modal-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal" id="goModal" align="center">
+
+  <div class="modal-content" style="width: 500px">
+    <div class="modal-header btn-success" >
+      <h6>Student/Edit</h6>
+    </div>
+    <div class="modal-body">
+      <form action="submit">
+        <div class="col">
+          <label for="name">Name:</label> &nbsp; &nbsp;
+          <input type="text" name="name" [(ngModel)]="student.name" > <br>
+          <label for="name">Birthday:</label> &nbsp;
+          <input type="text" name="birthday" [(ngModel)]="student.birthday"> <br>
+          <label for="name">Locality:</label> &nbsp;
+          <input type="text" name="locality" [(ngModel)]="student.locality"> <br>
+          <label for="name">University:</label> &nbsp;
+          <input type="text" name="university" [(ngModel)]="student.university"> <br>
+          <label for="name">Year:</label> &nbsp; &nbsp; &nbsp;
+          <input type="text" name="year" [(ngModel)]="student.year">
+
+          <label for="active">Active:</label>&nbsp;
+          <input class="input" type="radio" name="Radios" value="option1" checked>
+          <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp; &nbsp;
+          <input class="input" type="radio" name="Radios" value="option1" checked>
+          <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
+
+
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success">Save</button>
+      <button class="btn btn-danger">Cancel</button>
+
+    </div>
+  </div>
+</div>
 
 
 
