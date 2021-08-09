@@ -7,3 +7,5 @@ export class Student{
     active: string;
     university: string;
 }
+
+

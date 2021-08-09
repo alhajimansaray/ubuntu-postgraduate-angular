@@ -9,6 +9,7 @@ import { StudentsFilterComponent } from './components/students/students-filter/s
 import { StudentsFormComponent } from './components/students/students-form/students-form.component';
 import { StudentsFileComponent } from './components/students/students-file/students-file.component';
 import {FormsModule} from '@angular/forms';
+import {DatastorageService} from "./services/datastorage.service";
 
 
 
@@ -28,7 +29,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
 
   ],
-  providers: [],
+  providers: [DatastorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
