@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Student} from "../../../Modal/Student";
+import {DatastorageService} from '../../../services/datastorage.service';
 
 
 
@@ -11,6 +12,9 @@ import {Student} from "../../../Modal/Student";
 })
 export class StudentsFormComponent implements OnInit {
 
+  id: number;
+  searchedKeyword: string;
+  students: Student[];
 student: Student = new Student();
   newStudent: Student[] = [
   {name: "Student 1", birthday: "01-01-1990", locality: "Makeni", year: "2019", university: "Unimak", active: "Yes" },
@@ -19,12 +23,16 @@ student: Student = new Student();
 ];
 
 
-  constructor() { }
+  constructor(private myService: DatastorageService){
 
+  }
 
 
   ngOnInit() {
   }
-
+onDelete(){
+    this.myService.deleteStudent(this.id);
+    alert("Do you")
+}
 
 }
