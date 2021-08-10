@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {DatastorageService} from "./services/datastorage.service";
+
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,6 @@ import {DatastorageService} from "./services/datastorage.service";
 })
 export class AppComponent {
   title = 'ubuntu-postgraduate-angular';
-
-
-  constructor(private service: DatastorageService){}
 
 
 }

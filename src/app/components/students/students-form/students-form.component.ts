@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Student} from "../../../Modal/Student";
-import {DatastorageService} from "../../../services/datastorage.service";
+
 
 
 
@@ -19,7 +19,7 @@ student: Student = new Student();
 ];
 
 
-  constructor(private httpService: DatastorageService) { }
+  constructor() { }
 
 
 
