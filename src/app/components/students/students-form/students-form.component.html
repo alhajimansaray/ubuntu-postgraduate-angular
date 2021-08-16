@@ -89,7 +89,7 @@
         <tbody>
         <tr *ngFor="let students of newStudent" >
             <td class="text-center"><a class="text-info" title="Load"  routerLink="/students-file"><i class="far fa-file-alt"></i></a></td>
-            <td class="text-center" data-toggle="modal" data-target="#goModal"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
+            <td class="text-center" data-toggle="modal" data-target="#goModal" (click)="getAllStudent()"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
           <td class="text-center"><a class="text-danger" title="Delete" (click)="onDelete()"><i class="fa fa-times"></i></a></td>
 <!--<td class="text-center"><a class="text-danger" title="Delete" (click)="onDelete()"><i class="fas fa-times"></i></a></td>-->
 
@@ -145,7 +145,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-success">Save</button>
+      <button class="btn btn-success" (click)="save()">Save</button>
       <button class="btn btn-danger">Cancel</button>
 
     </div>
@@ -200,7 +200,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-success">Save</button>
+      <button class="btn btn-success" (click)="save()">Save</button>
       <button class="btn btn-danger">Cancel</button>
 
     </div>
