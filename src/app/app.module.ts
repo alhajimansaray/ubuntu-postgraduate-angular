@@ -13,9 +13,6 @@ import {StudentServiceService} from './services/student-service.service';
 
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

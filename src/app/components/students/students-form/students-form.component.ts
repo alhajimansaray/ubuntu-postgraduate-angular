@@ -14,18 +14,18 @@ import {StudentServiceService} from '../../../services/student-service.service';
 export class StudentsFormComponent implements OnInit {
 
 
-  constructor(private service: StudentServiceService) {}
+  constructor(private service: StudentServiceService) {
+  }
 
 
   id: number;
-  searchedKeyword: string;
   students: Student[];
-student: Student = new Student();
+  student: Student = new Student();
   newStudent: Student[] = [
-  {name: 'Student 1', birthday: '01-01-1990', locality: 'Makeni', year: '2019', university: 'Unimak', active: 'Yes' },
-    {name: 'Student 2', birthday: '01-01-1985', locality: 'Makeni', year: '2020', university: 'Njala', active: 'yes' },
-    {name: 'Student 3', birthday: '01-01-1980', locality: 'Freetown', year: '2020', university: 'Unimak', active: 'yes' },
-];
+    {name: 'Student 1', birthday: '01-01-1990', locality: 'Makeni', year: '2019', university: 'Unimak', active: 'Yes'},
+    {name: 'Student 2', birthday: '01-01-1985', locality: 'Makeni', year: '2020', university: 'Njala', active: 'yes'},
+    {name: 'Student 3', birthday: '01-01-1980', locality: 'Freetown', year: '2020', university: 'Unimak', active: 'yes'},
+  ];
 
   newStudents: Student[];
 
@@ -38,4 +38,5 @@ student: Student = new Student();
     alert('Proceed the with Delete');
 
   }
+
 }
