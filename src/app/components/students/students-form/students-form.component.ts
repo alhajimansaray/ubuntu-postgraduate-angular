@@ -39,4 +39,9 @@ export class StudentsFormComponent implements OnInit {
 
   }
 
+  save() {
+    this.newStudent.push();
+  }
+  // @ts-ignore
+  getAllStudent(id: number);
 }
