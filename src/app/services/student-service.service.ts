@@ -27,7 +27,7 @@ export class StudentServiceService {
     this.newStudent.unshift(newStudent);
   }
 
-  getAllStudent(id: number) {
+  getStudent(id: number) {
     return this.newStudent;
   }
 
