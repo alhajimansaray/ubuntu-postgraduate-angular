@@ -87,10 +87,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let students of newStudent" align="center" >
+        <tr *ngFor="let students of newStudent; let id = index" align="center" >
             <td class="text-center"><a class="text-info" title="Load"  routerLink="/students-file" style="pointer-events: none"><i class="far fa-file-alt"></i></a></td>
-            <td class="text-center" data-toggle="modal" data-target="#goModal" (click)="getStudent()"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
-          <td class="text-center"><a class="text-danger" title="Delete" (click)="onDelete()"><i class="fa fa-times"></i></a></td>
+            <td class="text-center" data-toggle="modal" data-target="#goModal"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
+          <td class="text-center"><a class="text-danger" title="Delete" (click)="deleteMsg(id)"><i class="fa fa-times"></i></a></td>
 <!--<td class="text-center"><a class="text-danger" title="Delete" (click)="onDelete()"><i class="fas fa-times"></i></a></td>-->
 
 <!--Binding table Data to Students array-->
@@ -111,7 +111,7 @@
 
 
 
-<!--Modal-->
+<!--Modal for Add Student-->
 
 <div class="modal" id="myModal" align="center">
 
@@ -131,8 +131,22 @@
           <label for="name">University:</label> &nbsp;
           <input type="text" name="university" [(ngModel)]="student.university">
           <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <label for="name">Year:</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <input type="number" data-target="#year" name="year" class="col-2" [(ngModel)]="student.year">
+
+          <label for="year">Year:</label>
+          <select name="year" class="custom-select col-2">
+            <option value=""></option>
+            <option value="1">2019</option>
+            <option value="1">2020</option>
+            <option value="1">2021</option>
+            <option value="1">2022</option>
+            <option value="1">2023</option>
+            <option value="1">2024</option>
+            <option value="1">2025</option>
+            <option value="1">2026</option>
+          </select> &nbsp; &nbsp; &nbsp; &nbsp;
+
+          <!--<label for="name">Year:</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-->
+          <!--<input type="number" data-target="#year" name="year" class="col-2" [(ngModel)]="student.year">-->
 
           <label for="active">Active:</label>&nbsp;
           <input class="input" type="radio" name="Radios" value="option1" checked>
@@ -145,30 +159,20 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-success" (click)="save()">Save</button>
-      <button class="btn btn-danger">Cancel</button>
+      <button class="btn btn-success" (click)="addStudent(student)">Save</button>
+      <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
     </div>
   </div>
 </div>
 
-<!--End of Modal-->
+
+<!--End of Add student Modal-->
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+<!--Modal for Edit Student-->
 <div class="modal" id="goModal" align="center">
 
   <div class="modal-content" style="width: 500px">
@@ -188,11 +192,10 @@
           <input type="text" name="university" [(ngModel)]="student.university"> <br>
           <label for="name">Year:</label> &nbsp; &nbsp; &nbsp;
           <input type="number" name="year" class="col-2" [(ngModel)]="student.year">
-
           <label for="active">Active:</label>&nbsp;
-          <input class="input" type="radio" name="Radios" value="option1" checked>
+          <input class="input" type="radio" name="Radios" value="Yes" [(ngModel)]="student.active">
           <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp; &nbsp;
-          <input class="input" type="radio" name="Radios" value="option1">
+          <input class="input" type="radio" name="Radios" value="No"  [(ngModel)]="student.active">
           <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
 
 
@@ -200,15 +203,15 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-success" (click)="save()">Save</button>
-      <button class="btn btn-danger">Cancel</button>
+      <button class="btn btn-success">Save</button>
+      <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
     </div>
   </div>
 </div>
 
 
-
+<!--End of Edit Student Modal-->
 
 
 
