@@ -4,6 +4,7 @@ import {StudentServiceService} from '../../../services/student-service.service';
 
 
 
+
 @Component({
   selector: 'app-students-form',
   templateUrl: './students-form.component.html',
@@ -34,13 +35,19 @@ export class StudentsFormComponent implements OnInit {
   }
 
 
+
   deleteMsg(id:number)
   {
     this.newStudent.splice(id, 1);
+
+    alert("Confirm Delete")
   }
 
   addStudent(newStudent: Student) {
     this.newStudent.push(newStudent);
+    alert("Confirm Details before saving ")
+
+
   }
 
 
