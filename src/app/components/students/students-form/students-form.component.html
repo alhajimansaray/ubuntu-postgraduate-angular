@@ -36,7 +36,6 @@
                         <option value="1">2021</option>
                     </select> &nbsp; &nbsp; &nbsp; &nbsp;
 
-
                   <label for="active" id="active"><strong>Active:</strong></label>&nbsp;
 
                     <input class="input" type="radio" name="Radios" id="yes" value="option1" checked>
@@ -60,14 +59,13 @@
     <br>
     <div align="right">
 
-         <i class="fas fa-plus" type="button" data-toggle="modal" data-target="#myModal">&nbsp;Students </i>
+         <i class="fas fa-plus" type="button" data-toggle="modal" data-target="#studentModal">&nbsp;Students </i>
     </div>
 
-  <!--Fa-fa plus Student button-->
 
 
   <!--Student Table-->
-  <!--<table class="table table-striped table-sm table-bordered">-->
+
 
     <table class="table table-sm table-bordered">
         <thead>
@@ -82,10 +80,9 @@
         </thead>
         <tbody>
         <tr *ngFor="let students of newStudent; let id = index" align="center">
-            <td class="text-center" style="border: hidden"><a class="text-info" title="Load"  routerLink="/students-file" style="pointer-events: none"><i class="far fa-file-alt"></i></a></td>
-            <td class="text-center" data-toggle="modal" data-target="#goModal" style="border: hidden"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
+            <td class="text-center" style="border: hidden"><a class="text-info" title="Load"  routerLink="/students-file" ><i class="far fa-file-alt"></i></a></td>
+            <td class="text-center" data-toggle="modal" data-target="#editModal" style="border: hidden"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
           <td class="text-center" style="border: hidden"><a class="text-danger" title="Delete" (click)="deleteMsg(id)"><i class="fa fa-times"></i></a></td>
-<!--<td class="text-center"><a class="text-danger" title="Delete" (click)="onDelete()"><i class="fas fa-times"></i></a></td>-->
 
 <!--Binding table Data to Students array-->
 
@@ -105,94 +102,162 @@
 
 
 
-<!--Modal for Add Student-->
+<!-- Start Student Add modal -->
 
-<div class="modal" id="myModal" align="center">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h5 class="modal-title">Edit Student</h5>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="ngSubmit">
+          <div class="form-group row">
+            <label for="name" class="col-form-label col-2 bg-white text-align:right ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Name:</strong></label>
+            <div class="col-10">
+              <input type="text" class="form-control" name="name" [(ngModel)]="student.name">
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="Birthday" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;<strong>Birthday:</strong></label>
+            <div class="col-5">
+              <input type="text" type="datetime-local" class="form-control" name="birthday"[(ngModel)]="student.birthday">
+            </div>
+          </div>
+          <br>
 
-  <div class="modal-content" style="width: 550px">
-    <div class="modal-header btn-success" >
-      <h6>New Student</h6>
-    </div>
-    <div class="modal-body">
-      <form action="ngsubmit">
-        <div class="col">
-          <label for="name">Name:</label> &nbsp; &nbsp; &nbsp;
-          <input type="text" name="name" [(ngModel)]="student.name" > <br>
-          <label for="name">Birthday:</label> &nbsp;
-          <input type="text" type="date" name="birthday" [(ngModel)]="student.birthday"> <br>
-          <label for="name">Locality:</label> &nbsp; &nbsp;
-          <input type="text" name="locality" [(ngModel)]="student.locality"> <br>
-          <label for="name">University:</label> &nbsp;
-          <input type="text" name="university" [(ngModel)]="student.university">
-          <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <div class="form-group row">
 
-          <label for="year">Year:</label>
+            <label for="locality" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;&nbsp;<strong>Locality:</strong></label>
+            <div class="col-10">
+              <input type="text" class="form-control" name="locality" [(ngModel)]="student.locality">
+            </div>
+          </div>
+          <br>
 
-          <!--<label for="name">Year:</label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-->
-          <input type="number" name="year" class="col-2" [(ngModel)]="student.year">
+          <div class="form-group row">
 
-          <label for="active">Active:</label>&nbsp;
-          <input class="input" type="radio" name="Radios" value="Yes" [(ngModel)]="student.active" >
-          <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp;
-          <input class="input" type="radio" name="Radios" value="No" [(ngModel)]="student.active">
-          <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
+            <label for="University" class="col-form-label col-2 text-align:right"><strong>University:</strong></label>
+            <div class="col-10">
+              <input type="text" class="form-control" [(ngModel)]="student.university" name="university" >
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
 
+            <label class="col-form-label col-2 display: inline-block text-align:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Year:</strong></label>
 
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-success" (click)="addStudent(student)">Save</button>
-      <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            <div class="col-4">
+              <select  name="year"[(ngModel)]="student.year">
+                <option selected>Select</option>
+                <option value="1">2018</option>
+                <option value="2">2021</option>
+              </select>
+            </div>
 
-    </div>
-  </div>
-</div>
+            <div class="col-sm col-form-label-sm" >
+              <label for="active"><strong>Active:</strong></label>&nbsp;
+              <input class="input" type="radio" name="Radios" value="Yes" [(ngModel)]="student.active" >
+              <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp;
+              <input class="input" type="radio" name="Radios" value="No" [(ngModel)]="student.active">
+              <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
+              </div>
 
+          </div>
+        </form>
 
-<!--End of Add student Modal-->
+      </div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addStudent(student)" >Save</button>
+        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
-
-
-<!--Modal for Edit Student-->
-<div class="modal" id="goModal" align="center">
-
-  <div class="modal-content" style="width: 500px">
-    <div class="modal-header btn-success" >
-      <h6>Student/Edit</h6>
-    </div>
-    <div class="modal-body">
-      <form action="submit">
-        <div class="col">
-          <label for="name">Name:</label> &nbsp; &nbsp;
-          <input type="text" name="name" [(ngModel)]="student.name" > <br>
-          <label for="name">Birthday:</label> &nbsp;
-          <input type="date" name="birthday" [(ngModel)]="student.birthday"> <br>
-          <label for="name">Locality:</label> &nbsp;
-          <input type="text" name="locality" [(ngModel)]="student.locality"> <br>
-          <label for="name">University:</label> &nbsp;
-          <input type="text" name="university" [(ngModel)]="student.university"> <br>
-          <label for="name">Year:</label> &nbsp; &nbsp; &nbsp;
-          <input type="number" name="year" class="col-2" [(ngModel)]="student.year">
-          <label for="active">Active:</label>&nbsp;
-          <input class="input" type="radio" name="Radios" value="Yes" [(ngModel)]="student.active">
-          <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp; &nbsp;
-          <input class="input" type="radio" name="Radios" value="No"  [(ngModel)]="student.active">
-          <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
-
-
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-success">Save</button>
-      <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
+      </div>
     </div>
   </div>
 </div>
 
+<!--End of Add Student Modal-->
+
+
+
+
+<!--Start of Edit Student Modal-->
+
+<div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header btn-success">
+        <h5 class="modal-title" id="exampleModalLabel">New Student</h5>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="ngSubmit">
+          <div class="form-group row">
+            <label for="name" class="col-form-label col-2 bg-white text-align:right ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Name:</strong></label>
+            <div class="col-10">
+              <input type="text" class="form-control" name="name" [(ngModel)]="student.name">
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="Birthday" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;<strong>Birthday:</strong></label>
+            <div class="col-5">
+              <input type="text" type="datetime-local" class="form-control" id="Birthday" name="birthday"[(ngModel)]="student.birthday">
+            </div>
+          </div>
+          <br>
+
+          <div class="form-group row">
+
+            <label for="locality" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;&nbsp;<strong>Locality:</strong></label>
+            <div class="col-10">
+              <input type="text" class="form-control" id="locality"  name="locality" [(ngModel)]="student.locality">
+            </div>
+          </div>
+          <br>
+
+          <div class="form-group row">
+
+            <label for="University" class="col-form-label col-2 text-align:right"><strong>University:</strong></label>
+            <div class="col-10">
+              <input type="text" class="form-control" id="University" [(ngModel)]="student.university" name="university" >
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+
+            <label class="col-form-label col-2 display: inline-block text-align:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Year:</strong></label>
+
+            <div class="col-4">
+              <select  name="year"[(ngModel)]="student.year">
+                <option selected>Select</option>
+                <option value="1">2018</option>
+                <option value="2">2021</option>
+              </select>
+            </div>
+
+            <div class="col-sm col-form-label-sm" >
+              <label for="active"><strong>Active:</strong></label>&nbsp;
+              <input class="input" type="radio" name="Radios" value="Yes" [(ngModel)]="student.active" >
+              <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp;
+              <input class="input" type="radio" name="Radios" value="No" [(ngModel)]="student.active">
+              <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp;
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addStudent(student)" >Save</button>
+        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--End of Edit Student Modal-->
 
