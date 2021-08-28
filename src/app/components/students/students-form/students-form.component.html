@@ -20,31 +20,29 @@
 <div class="container">
 
   <!--Students form-->
-    <form action="ng-submit" >
+    <form>
 
         <div class="card w-auto">
             <div class="card-body">
                 <div class="form-control-sm">
                     <label for="Name"><strong>Name:</strong></label> &nbsp;
-                    <input type="text" id="Name" class="col-4"> &nbsp; &nbsp; &nbsp; &nbsp;
+                    <input type="text" id="Name" class="col-3" name="searchname" [(ngModel)]="searchName"> &nbsp; &nbsp; &nbsp; &nbsp;
 
                     <label for="Year"><strong>Year:</strong></label> &nbsp;
-
-                    <select name="year" class="custom-select col-3" id="year">
+                  <select name="year" class="custom-select col-3" id="year" name="searchyear" [(ngModel)]="searchYear">
                         <option value=""></option>
-                        <option value="1">2018</option>
-                        <option value="1">2021</option>
+                        <option value="2018">2018</option>
+                        <option value="2021">2021</option>
                     </select> &nbsp; &nbsp; &nbsp; &nbsp;
 
                   <label for="active" id="active"><strong>Active:</strong></label>&nbsp;
-
-                    <input class="input" type="radio" name="Radios" id="yes" value="option1" checked>
+                  <input class="input" type="radio" name="Radios" id="yes" value="Yes" checked [(ngModel)]="searchActive">
                     <label class="form-check-label" for="yes">&nbsp; Yes </label> &nbsp; &nbsp;
 
-                  <input class="input" type="radio" name="Radios" id="no" value="option1">
+                  <input class="input" type="radio" name="Radios" id="no" value="No" [(ngModel)]="searchActive">
                   <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
-                    <button type="submit" class="btn btn-success">Filter</button>
+                    <button type="submit" class="btn btn-success" (click)="filterStudent(searchName,searchYear,searchActive)">Filter</button>
 
                 </div>
 
@@ -59,7 +57,7 @@
     <br>
     <div align="right">
 
-         <i class="fas fa-plus" type="button" data-toggle="modal" data-target="#studentModal">&nbsp;Students </i>
+         <i class="fas fa-plus" type="button" data-toggle="modal" data-target="#studentModal" (click)="cleanForm(myForm)">&nbsp;Students </i>
     </div>
 
 
@@ -79,10 +77,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let students of newStudent; let id = index" align="center">
+        <tr *ngFor="let students of allStudents; let myIndex = index" align="center">
             <td class="text-center" style="border: hidden"><a class="text-info" title="Load"  routerLink="/students-file" ><i class="far fa-file-alt"></i></a></td>
-            <td class="text-center" data-toggle="modal" data-target="#editModal" style="border: hidden"><a class="text-danger" title="Edit"><i class="fas fa-pencil-alt"></i></a></td>
-          <td class="text-center" style="border: hidden"><a class="text-danger" title="Delete" (click)="deleteMsg(id)"><i class="fa fa-times"></i></a></td>
+            <td class="text-center" data-toggle="modal" data-target="#editModal" style="border: hidden"><a class="text-danger" title="Edit" (click)="editStudent(students.id)"><i class="fas fa-pencil-alt"></i></a></td>
+          <td class="text-center" style="border: hidden"><a class="text-danger" title="Delete" (click)="deleteMsg(myIndex)"><i class="fa fa-times"></i></a></td>
 
 <!--Binding table Data to Students array-->
 
@@ -102,7 +100,7 @@
 
 
 
-<!-- Start Student Add modal -->
+<!-- Start of Student Add modal -->
 
 <div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
@@ -111,7 +109,7 @@
         <h5 class="modal-title">New Student</h5>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="ngSubmit" >
+        <form #myForm="ngForm">
           <div class="form-group row">
             <label for="name" class="col-form-label col-2 bg-white text-align:right ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Name:</strong></label>
             <div class="col-10">
@@ -150,8 +148,11 @@
             <div class="col-5">
               <select  class="custom-select col-7" name="university" [(ngModel)]="student.year" required>
                 <option value="">Select</option>
-                <option value="1">2018</option>
-                <option value="1">2021</option>
+                <option value="2018">2018</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2020">2020</option>
               </select>
             </div>
 
@@ -169,8 +170,8 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="addStudent(student)" >Save</button>
-        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="addStudent(student,myForm)" >Save</button>
+        <button class="btn btn-danger" data-dismiss="modal" (click)="cleanForm(myForm)">Cancel</button>
 
       </div>
     </div>
@@ -191,7 +192,7 @@
         <h5 class="modal-title">Edit Student</h5>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="ngSubmit" >
+        <form #editForm="ngForm" (ngSubmit)="ngSubmit" >
           <div class="form-group row">
             <label for="name" class="col-form-label col-2 bg-white text-align:right ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Name:</strong></label>
             <div class="col-10">

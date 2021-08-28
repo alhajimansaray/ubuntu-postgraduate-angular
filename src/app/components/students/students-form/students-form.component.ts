@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Student} from '../../../Modal/Student';
 import {StudentServiceService} from '../../../services/student-service.service';
+import {from} from "rxjs";
+import {NgForm} from "@angular/forms";
 
 
 
@@ -12,43 +14,59 @@ import {StudentServiceService} from '../../../services/student-service.service';
 })
 export class StudentsFormComponent implements OnInit {
 
+  searchName: string;
+  searchYear: any;
+  searchActive: string;
 
-  constructor(private service: StudentServiceService) {
+  allStudents: Student[]=[];
+  student: Student = new Student();
+
+  constructor(private studentService: StudentServiceService) {
   }
 
 
-  student: Student = new Student();
-  newStudent: Student[] = [
-    {id: 1, name: 'Alhaji Mansaray', birthday: '01-01-1990', locality: 'Makeni', year: '2021', university: 'Njala', active: 'Yes'},
-    {id: 2, name: 'David S. Fornah', birthday: '01-01-1986', locality: 'Makeni', year: '2021', university: 'Unimak', active: 'Yes'},
-    {id: 3, name: 'Momoh Sesay', birthday: '01-01-1985', locality: 'Makeni', year: '2021', university: 'Njala', active: 'Yes'},
-    {id: 4, name: 'Edward D. Thoronka', birthday: '01-01-1980', locality: 'Makeni', year: '2021', university: 'Njala', active: 'Yes'},
-    {id: 5, name: 'Andrew O. Kamara', birthday: '01-01-1990', locality: 'Makeni', year: '2021', university: 'Unimak', active: 'Yes'},
-    {id: 6, name: 'John Kamara', birthday: '01-01-1984', locality: 'Makeni', year: '2021', university: 'Unimak', active: 'Yes'},
-    {id: 7, name: 'Gibrilla Kanu', birthday: '01-01-1991', locality: 'Makeni', year: '2021', university: 'Unimak', active: 'Yes'},
-    {id: 8, name: 'Khadijah Bah', birthday: '01-01-1993', locality: 'Makeni', year: '2021', university: 'Unimak', active: 'Yes'}
-  ];
-
-
-
   ngOnInit() {
+
+    this.studentService.getAllStudent().subscribe(dataFromOriginalArray =>{
+
+      this.allStudents = dataFromOriginalArray;
+
+    });
+
   }
 
 
 
   deleteMsg(id:number)
   {
-    this.newStudent.splice(id, 1);
-
-    alert("Confirm Delete")
+     this.allStudents.splice(id, 1);
+     alert("Confirm Delete")
   }
 
-  addStudent(newStudent: Student) {
-    this.newStudent.push(newStudent);
-    alert("Confirm Details before saving ")
-
-
+  addStudent(newStudent: Student, form: NgForm) {
+    this.studentService.saveStudent(newStudent);
+    document.getElementById('studentModal').click(); // this line close the modal after saving
+     alert("Confirm Details before saving ")
   }
 
 
+  filterStudent(searchName:string,searchYear: number,searchActive:string) {
+
+    console.log(searchName);
+    console.log(searchYear);
+    console.log(searchActive);
+
+   return this.allStudents.filter(student => student.name === searchName || student.year===searchYear || student.active===searchActive);
+  }
+
+
+  editStudent(studentId: number){
+
+       this.student = this.allStudents.find( student => student.id == studentId);
+  }
+
+
+  cleanForm( form: NgForm){
+    form.reset();
+  }
 }

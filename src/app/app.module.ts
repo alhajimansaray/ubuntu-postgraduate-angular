@@ -13,13 +13,14 @@ import {StudentServiceService} from './services/student-service.service';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     StudentsFilterComponent,
     StudentsFormComponent,
-    StudentsFileComponent,
+    StudentsFileComponent
   ],
 
   imports: [
