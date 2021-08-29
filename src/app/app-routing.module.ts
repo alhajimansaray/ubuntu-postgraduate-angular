@@ -9,7 +9,7 @@ import {StudentsFileComponent} from "./components/students/students-file/student
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'students', component: StudentsFormComponent },
-  { path: 'students-file', component: StudentsFileComponent },
+  { path: 'students-file/:id', component: StudentsFileComponent },
   { path: ' ', redirectTo: 'home', pathMatch: 'full' }
 ];
 

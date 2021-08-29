@@ -12,6 +12,10 @@ import {Observable, from} from "rxjs";
 })
 export class StudentServiceService {
 
+
+
+  // Original Students Array
+
   private  studentList: Student[] = [
     {id: 1, name: 'Alhaji Mansaray', birthday: '01-01-1990', locality: 'Makeni', year: '2021', university: 'Njala', active: 'Yes'},
     {id: 2, name: 'David S. Fornah', birthday: '01-01-1986', locality: 'Makeni', year: '2021', university: 'Unimak', active: 'Yes'},
@@ -41,6 +45,13 @@ export class StudentServiceService {
 
   filterStudent(searchName:string,searchYear: number,searchActive:string): Student[]{
     return null;
+  }
+
+  // Method to finding the Student File
+  getStudentFile(studentId: number){
+
+    return this.studentList.find( student => student.id == studentId);
+
   }
 
 }
