@@ -57,6 +57,7 @@ export class StudentsFormComponent implements OnInit {
   addStudent(newStudent: Student, form: NgForm) {
     this.studentService.saveStudent(newStudent);
     document.getElementById('studentModal').click(); // this line close the modal after saving
+    document.getElementById('editModal').click(); // this line close the modal after editing
      alert("Confirm Details before saving ") // Alert
   }
 
@@ -81,7 +82,7 @@ export class StudentsFormComponent implements OnInit {
   editStudent(studentId: number){
 
        this.student = this.allStudents.find( student => student.id == studentId);
-    // document.getElementById('editModal').click();
+
   }
 // End of Editing Method
 
