@@ -85,7 +85,7 @@
 <!--Binding table Data to Students array-->
 
             <td>{{students.name}}</td>
-            <td>{{students.birthday}}</td>
+            <td>{{students.birthday  | date:"MM-dd-yyyy"}}</td>
             <td>{{students.locality}}</td>
             <td>{{students.year}}</td>
             <td>{{students.active}}</td>
@@ -113,14 +113,14 @@
           <div class="form-group row">
             <label for="name" class="col-form-label col-2 bg-white text-align:right ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Name:</strong></label>
             <div class="col-10">
-              <input type="text" class="form-control" name="name" [(ngModel)]="student.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="student.name">
             </div>
           </div>
           <br>
           <div class="form-group row">
             <label for="BirthdayEdit" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;<strong>Birthday:</strong></label>
             <div class="col-5">
-              <input type="text" type="date" class="form-control" id="BirthdayEdit" name="birthday"[(ngModel)]="student.birthday">
+              <input type="date" class="form-control" id="BirthdayEdit" name="birthday"[(ngModel)]="student.birthday">
             </div>
           </div>
           <br>
@@ -129,7 +129,7 @@
 
             <label for="locality" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;&nbsp;<strong>Locality:</strong></label>
             <div class="col-10">
-              <input type="text" class="form-control" id="locality" name="locality" [(ngModel)]="student.locality" required>
+              <input type="text" class="form-control" id="locality" name="locality" [(ngModel)]="student.locality">
             </div>
           </div>
           <br>
@@ -138,7 +138,7 @@
 
             <label for="universityEdit" class="col-form-label col-2 text-align:right"><strong>University:</strong></label>
             <div class="col-10">
-              <input type="text" class="form-control" id="universityEditn" name="university" [(ngModel)]="student.university" required>
+              <input type="text" class="form-control" id="universityEditn" name="university" [(ngModel)]="student.university">
             </div>
           </div>
           <br>
@@ -150,9 +150,6 @@
                 <option value="">Select</option>
                 <option value="2018">2018</option>
                 <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2020">2020</option>
               </select>
             </div>
 
@@ -203,7 +200,7 @@
           <div class="form-group row">
             <label for="Birthday" class="col-form-label col-2 text-align:right">&nbsp;&nbsp;<strong>Birthday:</strong></label>
             <div class="col-5">
-              <input type="text" type="date" class="form-control" id="Birthday" name="birthday"[(ngModel)]="student.birthday">
+              <input type="text" class="form-control" id="Birthday" name="Birthday"[(ngModel)]="student.birthday">
             </div>
           </div>
           <br>
@@ -229,10 +226,10 @@
           <div class="form-group row">
             <label for="year" class="col-form-label col-2 text-align:right">&nbsp;&nbsp; <strong>Year:</strong></label>
             <div class="col-5">
-              <select  class="custom-select col-7" name="university" [(ngModel)]="student.year" required>
+              <select  class="custom-select col-7" name="year" [(ngModel)]="student.year" required>
                 <option value="">Select</option>
-                <option value="1">2018</option>
-                <option value="1">2021</option>
+                <option value="2018">2018</option>
+                <option value="2021">2021</option>
               </select>
             </div>
 
