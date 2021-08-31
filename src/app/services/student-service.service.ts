@@ -12,7 +12,7 @@ import {Observable, from} from "rxjs";
 })
 export class StudentServiceService {
 
-
+studentLoop: Student[] = [];
 
   // Original Students Array
 
@@ -38,13 +38,23 @@ export class StudentServiceService {
   }
 
 
+  // Save method to push a student into the Student Array
   saveStudent(newStudent: Student){
 
     this.studentList.push(newStudent);
   }
 
-  filterStudent(searchName:string,searchYear: number,searchActive:string): Student[]{
-    return null;
+
+  filterStudent(searchName: string, searchYear: number, searchActive: string):Student[]{
+
+   let studentResult = this.studentList.filter( (student)=>{
+
+     return   student.name == searchName  || student.year == searchYear || student.active == searchActive ;
+
+   });
+
+   console.log(studentResult);
+    return studentResult;
   }
 
   // Method to finding the Student File

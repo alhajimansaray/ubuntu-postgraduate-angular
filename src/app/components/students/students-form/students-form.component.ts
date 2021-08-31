@@ -65,14 +65,13 @@ export class StudentsFormComponent implements OnInit {
 
 
 
-  // Implementing Filter Method
-  filterStudent(searchName:string,searchYear: number,searchActive:string) {
+  //  Filter Method invoked from the Service
+  filterStudent() {
 
-    console.log(searchName);
-    console.log(searchYear);
-    console.log(searchActive);
+    this.allStudents = [];
 
-   return this.allStudents.filter(student => student.name === searchName || student.year===searchYear || student.active===searchActive);
+    this.allStudents = this.studentService.filterStudent(this.searchName, this.searchYear, this.searchActive);
+
   }
 // End of Filter Method
 

@@ -42,7 +42,7 @@
                   <input class="input" type="radio" name="Radios" id="no" value="No" [(ngModel)]="searchActive">
                   <label class="form-check-label" for="no" >&nbsp;No </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
-                    <button type="submit" class="btn btn-success" (click)="filterStudent(searchName,searchYear,searchActive)">Filter</button>
+                    <button type="submit" class="btn btn-success" (click)="filterStudent()">Filter</button>
 
                 </div>
 
@@ -57,7 +57,7 @@
     <br>
     <div align="right">
 
-         <i class="fas fa-plus" type="button" data-toggle="modal" data-target="#studentModal" (click)="cleanForm(myForm)">&nbsp;Students </i>
+         <i class="fas fa-plus" type="button" data-toggle="modal" data-target="#studentModal">&nbsp;Students </i>
     </div>
 
 
